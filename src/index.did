@@ -1,0 +1,27 @@
+type TravelItinerary = record {
+  id : text;
+  destination : text;
+  endDate : nat64;
+  createdAt : nat64;
+  updatedAt : opt nat64;
+  startDate : nat64;
+};
+type TravelItineraryPayload = record {
+  destination : text;
+  endDate : nat64;
+  startDate : nat64;
+};
+type _AzleResult = variant { Ok : TravelItinerary; Err : text };
+type _AzleResult_1 = variant { Ok : float64; Err : text };
+type _AzleResult_2 = variant { Ok : vec TravelItinerary; Err : text };
+service : () -> {
+  addTravelItinerary : (TravelItineraryPayload) -> (_AzleResult);
+  countTravelItineraries : () -> (_AzleResult_1) query;
+  deleteTravelItinerary : (text) -> (_AzleResult);
+  getTravelItineraries : () -> (_AzleResult_2) query;
+  getTravelItinerariesByTimeRange : (nat64, nat64) -> (_AzleResult_2) query;
+  getTravelItinerariesPaginated : (float64, float64) -> (_AzleResult_2) query;
+  getTravelItinerary : (text) -> (_AzleResult) query;
+  searchTravelItineraries : (text) -> (_AzleResult_2) query;
+  updateTravelItinerary : (text, TravelItineraryPayload) -> (_AzleResult);
+}
